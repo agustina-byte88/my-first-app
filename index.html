@@ -6,90 +6,181 @@
     <title>Contador de Clicks | Colegio Bolívar</title>
 
     <style>
+        /* Estilos generales - Dark Mode */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
         body {
-            font-family: Arial, sans-serif;
-            background-color: #f4f6f9;
+            font-family: 'Segoe UI', Arial, sans-serif;
+            background: linear-gradient(135deg, #050b1a, #101f40);
+            color: #ffffff;
             display: flex;
             justify-content: center;
             align-items: center;
             min-height: 100vh;
-            margin: 0;
         }
 
+        /* Tarjeta principal */
         .contenedor {
-            background-color: white;
-            padding: 40px;
-            border-radius: 15px;
-            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+            background: rgba(17, 30, 56, 0.95);
+            padding: 45px 35px;
+            border-radius: 20px;
+            border: 1px solid rgba(0, 255, 255, 0.2);
+            box-shadow: 0 0 40px rgba(0, 255, 255, 0.08);
             text-align: center;
-            width: 320px;
+            width: 90%;
+            max-width: 400px;
+            transition: transform 0.3s ease;
         }
 
+        .contenedor:hover {
+            transform: translateY(-5px);
+        }
+
+        /* Títulos */
         h1 {
-            color: #003366;
-            font-size: 26px;
+            color: #00f5ff;
+            font-size: 28px;
+            font-weight: 700;
+            margin-bottom: 10px;
+            letter-spacing: 1px;
         }
 
         h2 {
-            color: #555;
-            font-size: 18px;
+            color: #a8b8d8;
+            font-size: 16px;
+            font-weight: 400;
+            margin-bottom: 30px;
         }
 
+        p {
+            color: #d0dcf0;
+            font-size: 15px;
+            margin-bottom: 15px;
+        }
+
+        /* Contador */
         #contador {
-            font-size: 70px;
-            font-weight: bold;
-            color: #003366;
-            margin: 25px 0;
+            font-size: 85px;
+            font-weight: 800;
+            color: #00f5ff;
+            text-shadow:
+                0 0 10px rgba(0, 245, 255, 0.5),
+                0 0 30px rgba(0, 245, 255, 0.2);
+            margin: 20px 0 30px;
+            transition: transform 0.2s ease;
         }
 
-        button {
-            background-color: #003366;
-            color: white;
-            border: none;
-            padding: 15px 25px;
+        /* Botón principal neón */
+        .boton-click {
+            background: transparent;
+            color: #00f5ff;
+            border: 2px solid #00f5ff;
+            padding: 16px 40px;
             font-size: 18px;
-            border-radius: 8px;
+            font-weight: 600;
+            border-radius: 12px;
             cursor: pointer;
-            transition: background-color 0.3s;
+            box-shadow: 0 0 12px rgba(0, 245, 255, 0.25);
+            transition: all 0.3s ease;
+            width: 100%;
         }
 
-        button:hover {
-            background-color: #0055a5;
+        .boton-click:hover {
+            background: #00f5ff;
+            color: #050b1a;
+            box-shadow:
+                0 0 20px rgba(0, 245, 255, 0.6),
+                0 0 40px rgba(0, 245, 255, 0.3);
+            transform: scale(1.03);
         }
 
+        .boton-click:active {
+            transform: scale(0.97);
+        }
+
+        /* Botón reiniciar */
         .reiniciar {
-            background-color: #888;
-            margin-top: 15px;
+            background: transparent;
+            color: #ff5c8a;
+            border: 1px solid #ff5c8a;
+            padding: 12px 25px;
             font-size: 14px;
+            border-radius: 10px;
+            cursor: pointer;
+            margin-top: 18px;
+            transition: all 0.3s ease;
+            width: 100%;
         }
 
         .reiniciar:hover {
-            background-color: #555;
+            background: #ff5c8a;
+            color: #ffffff;
+            box-shadow: 0 0 20px rgba(255, 92, 138, 0.4);
         }
 
+        /* Animación del contador */
+        .animacion {
+            animation: pulso 0.3s ease;
+        }
+
+        @keyframes pulso {
+            0% {
+                transform: scale(1);
+            }
+
+            50% {
+                transform: scale(1.2);
+            }
+
+            100% {
+                transform: scale(1);
+            }
+        }
+
+        /* Pie de página */
         footer {
-            margin-top: 30px;
-            color: #777;
+            margin-top: 35px;
+            color: #7183a6;
             font-size: 12px;
+            letter-spacing: 0.5px;
+        }
+
+        /* Adaptación para dispositivos móviles */
+        @media (max-width: 480px) {
+            .contenedor {
+                padding: 35px 25px;
+            }
+
+            h1 {
+                font-size: 24px;
+            }
+
+            #contador {
+                font-size: 70px;
+            }
         }
     </style>
 </head>
 
 <body>
 
-    <div class="contenedor">
+    <main class="contenedor">
+
         <h1>Colegio Bolívar</h1>
+
         <h2>Contador de Clicks para Eventos</h2>
 
         <p>¡Haz clic para participar!</p>
 
         <div id="contador" aria-live="polite">0</div>
 
-        <button onclick="incrementarContador()">
+        <button class="boton-click" onclick="incrementarContador()">
             +1 Click
         </button>
-
-        <br>
 
         <button class="reiniciar" onclick="reiniciarContador()">
             Reiniciar contador
@@ -98,22 +189,38 @@
         <footer>
             Colegio Bolívar | Eventos Escolares
         </footer>
-    </div>
+
+    </main>
 
     <script>
         // Inicializar el contador
         let clicks = 0;
 
+        // Obtener el elemento del contador
+        const contadorElemento = document.getElementById("contador");
+
         // Función para incrementar el contador
         function incrementarContador() {
             clicks++;
-            document.getElementById("contador").textContent = clicks;
+
+            // Actualizar el número
+            contadorElemento.textContent = clicks;
+
+            // Reiniciar la animación para cada clic
+            contadorElemento.classList.remove("animacion");
+            void contadorElemento.offsetWidth;
+            contadorElemento.classList.add("animacion");
         }
 
         // Función para reiniciar el contador
         function reiniciarContador() {
             clicks = 0;
-            document.getElementById("contador").textContent = clicks;
+
+            // Actualizar el número
+            contadorElemento.textContent = clicks;
+
+            // Quitar animación
+            contadorElemento.classList.remove("animacion");
         }
     </script>
 
