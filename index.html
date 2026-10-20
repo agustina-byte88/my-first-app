@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Contador de Clicks | Colegio Bolívar</title>
+
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f6f9;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            margin: 0;
+        }
+
+        .contenedor {
+            background-color: white;
+            padding: 40px;
+            border-radius: 15px;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+            text-align: center;
+            width: 320px;
+        }
+
+        h1 {
+            color: #003366;
+            font-size: 26px;
+        }
+
+        h2 {
+            color: #555;
+            font-size: 18px;
+        }
+
+        #contador {
+            font-size: 70px;
+            font-weight: bold;
+            color: #003366;
+            margin: 25px 0;
+        }
+
+        button {
+            background-color: #003366;
+            color: white;
+            border: none;
+            padding: 15px 25px;
+            font-size: 18px;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+
+        button:hover {
+            background-color: #0055a5;
+        }
+
+        .reiniciar {
+            background-color: #888;
+            margin-top: 15px;
+            font-size: 14px;
+        }
+
+        .reiniciar:hover {
+            background-color: #555;
+        }
+
+        footer {
+            margin-top: 30px;
+            color: #777;
+            font-size: 12px;
+        }
+    </style>
+</head>
+
+<body>
+
+    <div class="contenedor">
+        <h1>Colegio Bolívar</h1>
+        <h2>Contador de Clicks para Eventos</h2>
+
+        <p>¡Haz clic para participar!</p>
+
+        <div id="contador" aria-live="polite">0</div>
+
+        <button onclick="incrementarContador()">
+            +1 Click
+        </button>
+
+        <br>
+
+        <button class="reiniciar" onclick="reiniciarContador()">
+            Reiniciar contador
+        </button>
+
+        <footer>
+            Colegio Bolívar | Eventos Escolares
+        </footer>
+    </div>
+
+    <script>
+        // Inicializar el contador
+        let clicks = 0;
+
+        // Función para incrementar el contador
+        function incrementarContador() {
+            clicks++;
+            document.getElementById("contador").textContent = clicks;
+        }
+
+        // Función para reiniciar el contador
+        function reiniciarContador() {
+            clicks = 0;
+            document.getElementById("contador").textContent = clicks;
+        }
+    </script>
+
+</body>
+</html>
